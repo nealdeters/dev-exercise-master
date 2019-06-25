@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Quotes App</title>
+  <script src="src/vue.js"></script>
+  <link rel="stylesheet" type="text/css" href="quotes.css">
+</head>
+<body>
+  <div id="app">
+    <div class="container">
+      <label>Search</label>
+      <input type="text" v-model="search" class="search-input">
+
+      <label class="theme-label">Theme</label>
+      <select v-model="themeFilter" class="select-control">
+        <option value="All">All</option>
+        <option value="Movies">Movies</option>
+        <option value="Games">Games</option>
+      </select>
+    </div>
+
+    <table>
+    	<thead>
+    		<tr>
+    			<th @click="sort('source')">Source</th>
+    			<th @click="sort('context')">Context</th>
+    			<th @click="sort('quote')">Quote</th>
+    			<th @click="sort('theme')">Theme</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr v-for="quote in getResults">
+    			<td>{{quote.source}}</td>
+    			<td>{{quote.context}}</td>
+    			<td>{{quote.quote}}</td>
+    			<td>{{quote.theme}}</td>
+    		</tr>
+    	</tbody>
+    </table>
+
+		<p>
+		<button class="button" @click="prevPage">Previous</button> 
+		<button class="button" @click="nextPage">Next</button>
+		</p>
+
+		<!-- debug: sort={{currentSort}}, dir={{currentSortDir}}, page={{currentPage}} -->
+
+  </div>
+  <script src="src/app.js"></script>
+</body>
+</html>
